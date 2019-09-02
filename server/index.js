@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const db = require('./queries');
 
 app.use(bodyParser.json())
@@ -19,5 +19,5 @@ app.get('/routes', db.getRoutes);
 app.get('/nextTrain', db.getNextTrain);
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
+  console.log(`App running on ${port}`)
 })
