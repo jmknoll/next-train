@@ -14,7 +14,8 @@ const getRoutes = (request, response) => {
     }
     response.status(200).json(results.rows)
   })
-}
+  client.end();
+} 
 
 const getNextTrain = (request, response) => {
   const station = '236' // 236N || 236S;
