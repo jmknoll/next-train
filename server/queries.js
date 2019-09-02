@@ -6,7 +6,7 @@ var moment = require('moment')
 const getRoutes = (request, response) => {
   client.query('SELECT * from routes', (error, results) => {
     if (error) {
-      throw error
+      response.status(500).json({'server error': error})
     }
     response.status(200).json(results.rows)
   })
