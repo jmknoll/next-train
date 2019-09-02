@@ -14,7 +14,7 @@ const getRoutes = (request, response) => {
     }
     response.status(200).json(results.rows)
   })
-  client.end();
+  //client.end();
 } 
 
 const getNextTrain = (request, response) => {
