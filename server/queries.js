@@ -1,16 +1,12 @@
-const Pool = require('pg').Pool
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-})
+
+const {client} = require(`./db.${process.env.NODE_ENV}.js`);
+
+console.log(client)
 
 var moment = require('moment')
 
 const getRoutes = (request, response) => {
-  pool.query('SELECT * from routes', (error, results) => {
+  client.query('SELECT * from routes', (error, results) => {
     if (error) {
       throw error
     }
@@ -32,7 +28,7 @@ const getNextTrain = (request, response) => {
   }
   let day = transformDay(moment().day());
   let now = moment().format('HH:mm:ss');
-  pool.query(`SELECT * from stop_times WHERE trip_id LIKE '%` + day + `%' AND stop_id = '236N' AND arrival_time > '` + now + `' ORDER BY arrival_time ASC LIMIT 1 `, (error, results) => {
+  client.query(`SELECT * from stop_times WHERE trip_id LIKE '%` + day + `%' AND stop_id = '236N' AND arrival_time > '` + now + `' ORDER BY arrival_time ASC LIMIT 1 `, (error, results) => {
     if (error) {
       throw error
     }
