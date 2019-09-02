@@ -3,6 +3,10 @@ const {client} = require(`./db.${process.env.NODE_ENV}.js`);
 
 var moment = require('moment')
 
+const test = (request, response) => {
+  response.status(200).json({msg: 'test success'})
+};
+
 const getRoutes = (request, response) => {
   client.query('SELECT * from routes', (error, results) => {
     if (error) {
@@ -37,5 +41,5 @@ const getNextTrain = (request, response) => {
 module.exports = {
   getRoutes,
   getNextTrain,
-  client
+  test
 }

@@ -15,9 +15,10 @@ app.use(
 )
 
 app.get('/', (request, response) => {
-  response.json({db: db})
+  response.json('app running on with node and express')
 })
 
+app.get('/test', db.test);
 app.get('/routes', db.getRoutes);
 app.get('/nextTrain', db.getNextTrain);
 
