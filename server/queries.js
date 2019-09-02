@@ -1,8 +1,6 @@
 
 const {client} = require(`./db.${process.env.NODE_ENV}.js`);
 
-console.log(client)
-
 var moment = require('moment')
 
 const getRoutes = (request, response) => {
@@ -39,4 +37,5 @@ const getNextTrain = (request, response) => {
 module.exports = {
   getRoutes,
   getNextTrain,
+  client
 }

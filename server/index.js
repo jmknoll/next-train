@@ -15,7 +15,7 @@ app.use(
 )
 
 app.get('/', (request, response) => {
-  response.json({db})
+  response.json({db: db})
 })
 
 app.get('/routes', db.getRoutes);
