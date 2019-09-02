@@ -14,7 +14,6 @@ const getRoutes = (request, response) => {
     }
     response.status(200).json(results.rows)
   })
-  //client.end();
 } 
 
 const getNextTrain = (request, response) => {
@@ -31,7 +30,7 @@ const getNextTrain = (request, response) => {
   }
   let day = transformDay(moment().day());
   let now = moment().format('HH:mm:ss');
-  client.query(`SELECT * from stop_times WHERE trip_id LIKE '%` + day + `%' AND stop_id = '236N' AND arrival_time > '` + now + `' ORDER BY arrival_time ASC LIMIT 1 `, (error, results) => {
+  client.query(`SELECT * from stop_times WHERE trip_id LIKE '%` + day + `%' AND stop_id = '236N' AND arrival_time > '` + now + `' ORDER BY arrival_time ASC`, (error, results) => {
     if (error) {
       throw error
     }
