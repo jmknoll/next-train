@@ -1,20 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import DataService from './dataService';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import DataService from "./dataService";
 const dataService = new DataService();
 
-
-const transformLineNumber = (val) => {
+const transformLineNumber = val => {
   const lineNumberMap = {
-    'f': '21'
-  }
+    f: "21"
+  };
   return lineNumberMap[val];
-}
-
+};
 
 function App() {
-  const data = dataService.getData(transformLineNumber('f'))
+  const data = dataService.getData(transformLineNumber("f"));
   return (
     <div className="App">
       <header className="App-header">
