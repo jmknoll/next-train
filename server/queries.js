@@ -15,6 +15,18 @@ const getRoutes = (request, response) => {
   });
 };
 
+const getStops = (request, response) => {
+  client.query(
+    "SELECT stop_id, stop_name from stops WHERE LENGTH(stop_id) < 4",
+    (err, results) => {
+      if (err) {
+        response.status(500).json({ "server error": error });
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const getNextTrain = (request, response) => {
   const { time, station, direction } = request.query;
   const transformDay = day => {
@@ -48,5 +60,6 @@ const getNextTrain = (request, response) => {
 
 module.exports = {
   getRoutes,
-  getNextTrain
+  getNextTrain,
+  getStops
 };
